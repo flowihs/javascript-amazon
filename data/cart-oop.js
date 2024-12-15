@@ -4,6 +4,24 @@ function Cart(localStorageKey) {
     
         loadFromStorage: function () {
             this.cartItems = JSON.parse(localStorage.getItem(localStorageKey))
+
+            cart.forEach((cartItem) => {
+                if (productId === cartItem.productId) {
+                  matchingItem = cartItem
+                }
+              });
+            
+              if (matchingItem) {
+                matchingItem.quantity += 1;
+              } 
+              
+              if (!matchingItem) {
+                this.cartItems.push({
+                  productId: productId,
+                  quantity: 1,
+                  deliveryOptionId: '1'
+                });
+              }
         },
     
     
